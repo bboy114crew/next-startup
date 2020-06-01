@@ -7,14 +7,10 @@ import {
   all,
   cancelled,
   takeEvery,
-  takeLatest
+  takeLatest,
 } from "redux-saga/effects";
 import axios from "axios";
-import {
-  loadIssues,
-  loadIssuesSuccess,
-  loadIssuesError,
-} from "../slices/issue";
+import { LOAD_ISSUES } from "./type";
 function* loadIssuesAsync() {
   const url = `https://api.github.com/repos/rails/rails/issues?per_page=25&page=1`;
   try {
@@ -26,7 +22,7 @@ function* loadIssuesAsync() {
 }
 
 export function* loadIssuesStart() {
-  yield takeLatest(loadIssues.type, loadIssuesAsync);
+  yield takeLatest(LOAD_ISSUES, loadIssuesAsync);
 }
 
 export default function* issueSagas() {

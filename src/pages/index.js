@@ -1,8 +1,7 @@
 import Head from "next/head";
 import { useEffect } from "react";
-import { loadIssues } from "src/slices/issue";
-import { wrapper } from "src/store";
-import { END } from "redux-saga";
+import { loadIssuesStart } from "src/redux/issue/action";
+import { wrapper } from "src/redux/store";
 import { useDispatch } from "react-redux";
 
 import {
@@ -18,11 +17,7 @@ import {
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-export default function Home() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadIssues());
-  }, [dispatch]);
+function Home() {
   return (
     <div style={{ marginTop: 100 }}>
       <Form layout="horizontal">
@@ -39,7 +34,6 @@ export default function Home() {
             defaultValue={3}
             name="inputNumber"
           />
-          <a href="#">Link</a>
         </FormItem>
 
         <FormItem
@@ -98,6 +92,8 @@ export default function Home() {
   );
 }
 
-// export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-//   store.dispatch(loadIssues());
-// });
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+  store.dispatch(loadIssuesStart());
+});
+
+export default Home;

@@ -1,15 +1,26 @@
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { HYDRATE, createWrapper } from "next-redux-wrapper";
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import rootSaga from "src/sagas";
-import count from "src/slices/counter";
-import issue from "src/slices/issue";
+import rootSaga from "./rootSaga";
+import issue from "./issue/reducer";
+
+const bindMiddleware = (middleware) => {
+  if (process.env.NODE_ENV !== "production") {
+    const { composeWithDevTools } = require("redux-devtools-extension");
+    return composeWithDevTools(applyMiddleware(...middleware));
+  }
+  return applyMiddleware(...middleware);
+};
 
 const combinedReducer = combineReducers({
-  count,
   issue,
 });
+
+export const isServer = !(
+  typeof root !== "undefined" &&
+  root.document &&
+  root.document.createElement
+);
 
 const reducer = (state, action) => {
   if (action.type === HYDRATE) {
@@ -17,7 +28,6 @@ const reducer = (state, action) => {
       ...state, // use previous state
       ...action.payload, // apply delta from hydration
     };
-    if (state.count) nextState.count = state.count; // preserve count value on client side navigation
     if (state.issue) nextState.issue = state.issue;
     return nextState;
   } else {
@@ -25,14 +35,13 @@ const reducer = (state, action) => {
   }
 };
 
+
 export const makeStore = () => {
   const sagaMiddleware = createSagaMiddleware();
-
-  const store = configureStore({
-    reducer: reducer,
-    middleware: [sagaMiddleware, ...getDefaultMiddleware({ thunk: false })],
-    devTools: process.env.NODE_ENV !== "production",
-  });
+  const store = createStore(
+    reducer,
+    bindMiddleware([sagaMiddleware])
+  );
 
   store.sagaTask = sagaMiddleware.run(rootSaga);
 

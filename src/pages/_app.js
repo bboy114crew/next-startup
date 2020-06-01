@@ -1,6 +1,6 @@
 import App from "next/app";
 import { END } from "redux-saga";
-import { wrapper } from "src/store";
+import { wrapper } from "src/redux/store";
 
 class CustomApp extends App {
   static async getInitialProps({ Component, ctx }) {
