@@ -23,12 +23,11 @@ export const isServer = !(
 );
 
 const reducer = (state, action) => {
-  if (action.type === HYDRATE) {
+  if (action.type === '__NEXT_REDUX_WRAPPER_HYDRATE__') {
     const nextState = {
       ...state, // use previous state
       ...action.payload, // apply delta from hydration
     };
-    if (state.issue) nextState.issue = state.issue;
     return nextState;
   } else {
     return combinedReducer(state, action);

@@ -11,6 +11,7 @@ class CustomApp extends App {
     };
 
     if (ctx.req) {
+      console.log('Saga is executing on server, we will wait');
       ctx.store.dispatch(END);
       await ctx.store.sagaTask.toPromise();
     }

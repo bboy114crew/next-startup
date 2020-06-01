@@ -1,16 +1,12 @@
 import {
-  take,
-  fork,
-  cancel,
-  call,
   put,
-  all,
-  cancelled,
-  takeEvery,
   takeLatest,
+  all
 } from "redux-saga/effects";
 import axios from "axios";
 import { LOAD_ISSUES } from "./type";
+import {loadIssuesSuccess, loadIssuesFailed} from './action';
+
 function* loadIssuesAsync() {
   const url = `https://api.github.com/repos/rails/rails/issues?per_page=25&page=1`;
   try {
