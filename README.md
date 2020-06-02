@@ -6,6 +6,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [x] **reselect**: Simple selector library for Redux (and others) inspired by getters in [NuclearJS](https://optimizely.github.io/nuclear-js/), subscriptions in re-frame and this proposal from speedskater.
 - [x] **antd**: A design system for enterprise-level products. Create an efficient and enjoyable work experience.
 
+## Doing
+- [ ] **redux-toolkit**: The official, opinionated, batteries-included toolset for efficient Redux development
+
 ## Todo
 - [ ] **next-i18next**: A plugin for [Next.js](https://nextjs.org/) projects that allows you to get translations up and running quickly and easily, while fully supporting SSR, multiple namespaces with code splitting, etc.
 - [ ] **i18next**: An internationalization-framework written in and for JavaScript. But it's much more than that.
