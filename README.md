@@ -7,8 +7,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [x] **antd**: A design system for enterprise-level products. Create an efficient and enjoyable work experience.
 
 ## Todo
-- [] **next-i18next**: A plugin for [Next.js](https://nextjs.org/) projects that allows you to get translations up and running quickly and easily, while fully supporting SSR, multiple namespaces with code splitting, etc.
-- [] **i18next**: An internationalization-framework written in and for JavaScript. But it's much more than that.
+- [-] **next-i18next**: A plugin for [Next.js](https://nextjs.org/) projects that allows you to get translations up and running quickly and easily, while fully supporting SSR, multiple namespaces with code splitting, etc.
+- [-] **i18next**: An internationalization-framework written in and for JavaScript. But it's much more than that.
 
 ## Getting Started
 
