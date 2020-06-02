@@ -13,7 +13,7 @@ export function loadIssuesSuccess(data) {
 }
 export function loadIssuesFailed(error) {
   return {
-    type: CLIENT_UNSET,
+    type: LOAD_ISSUES_FAILED,
     payload: error,
   };
 }

@@ -1,9 +1,8 @@
-import { all, fork } from "redux-saga/effects";
-import issue from 'src/redux/issue/saga';
+import { all } from "redux-saga/effects";
+import { loadIssuesStart } from "src/redux/issue/saga";
+
 function* rootSaga() {
-  yield all([
-    fork(issue),
-  ]);
+  yield all([loadIssuesStart()]);
 }
 
 export default rootSaga;

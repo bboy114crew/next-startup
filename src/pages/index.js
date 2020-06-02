@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { loadIssuesStart } from "src/redux/issue/action";
 import { wrapper } from "src/redux/store";
 import { useDispatch } from "react-redux";
+import { END } from "redux-saga";
 
 import {
   Form,
@@ -92,8 +93,12 @@ function Home() {
   );
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
-  store.dispatch(loadIssuesStart());
-});
+export const getStaticProps = wrapper.getStaticProps(
+  async ({ store }) => {
+    store.dispatch(loadIssuesStart());
+    store.dispatch(END);
+    await store.sagaTask.toPromise();
+  }
+);
 
 export default Home;
